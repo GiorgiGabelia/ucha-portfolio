@@ -14,13 +14,18 @@
     transparent 100%
   );
 
-  &:hover .scroller-content {
+  &:hover .scroller-wrapper {
     animation-play-state: paused;
   }
 }
 
+.scroller-wrapper {
+  display: flex;
+  animation: infinite-scroll 25s linear infinite;
+}
+
 .scroller-content {
-  animation: infinite-scroll 5s linear infinite;
+  flex: 0 0 auto;
 }
 
 @keyframes infinite-scroll {
@@ -28,6 +33,6 @@
     transform: translateX(0);
   }
   to {
-    transform: translateX(-100%);
+    transform: translateX(-50%);
   }
 }
