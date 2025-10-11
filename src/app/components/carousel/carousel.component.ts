@@ -8,7 +8,7 @@ import { Component, computed, signal } from '@angular/core';
   styleUrl: './carousel.component.scss',
 })
 export class CarouselComponent {
-  readonly images = Array.from({ length: 7 }, (_, i) => `assets/${i + 1}.png`);
+  readonly images = Array.from({ length: 7 }, (_, i) => `assets/${i + 1}.webp`);
 
   hoveredImgIndexInSecondUl = signal<null | number>(null);
 
