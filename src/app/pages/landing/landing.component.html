@@ -1,11 +1,16 @@
 <div
-  class="flex justify-between flex-col p-8 max-[900px]:pb-[100px] size-full relative gap-28 max-[900px]:gap-14  h-full min-h-fit">
+  class="flex justify-between flex-col py-8 max-[900px]:pb-[85px] size-full relative gap-28 max-[900px]:gap-14 h-full min-h-fit">
   <app-header></app-header>
 
-  <app-carousel />
+   <div class="flex-1 relative">
+    <app-carousel class="absolute top-1/2 -translate-y-1/2 transform" />
+  </div>
 
-  <div class="flex justify-between items-end max-[900px]:justify-center">
+
+
+  <div class="flex justify-between items-end max-[900px]:justify-start px-8">
     <app-about-me class="max-[900px]:hidden"></app-about-me>
     <app-contact></app-contact>
   </div>
 </div>
+

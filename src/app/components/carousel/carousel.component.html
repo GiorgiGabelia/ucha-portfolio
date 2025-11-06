@@ -1,13 +1,13 @@
 <div class="w-full inline-flex flex-nowrap overflow-hidden scroll-container">
   <div class="scroller-wrapper">
-    <ul class="flex items-center justify-center md:justify-start [&_li]:mx-4 [&_img]:max-w-none scroller-content">
+    <ul class="flex items-center justify-center md:justify-start [&_li]:mx-2 [&_img]:max-w-none scroller-content">
       @for(img of images; track img) {
       <li>
         <img [src]="img" class="h-[256px] hover:h-[385px] transition-all duration-300 ease-in-out" />
       </li>
       }
     </ul>
-    <ul class="flex items-center justify-center md:justify-start [&_li]:mx-4 [&_img]:max-w-none scroller-content"
+    <ul class="flex items-center justify-center md:justify-start [&_li]:mx-2 [&_img]:max-w-none scroller-content"
       aria-hidden="true">
       @for(img of images; track img) {
       <li>
