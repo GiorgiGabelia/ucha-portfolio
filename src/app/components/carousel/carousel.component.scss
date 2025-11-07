@@ -19,13 +19,13 @@
   }
 }
 
+.scroller-content {
+  flex: 0 0 auto;
+}
+
 .scroller-wrapper {
   display: flex;
   animation: infinite-scroll 25s linear infinite;
-}
-
-.scroller-content {
-  flex: 0 0 auto;
 }
 
 @keyframes infinite-scroll {
@@ -33,7 +33,7 @@
     transform: translateX(0);
   }
   to {
-    transform: translateX(-50%);
+    transform: translateX(-25%);
   }
 }
 
