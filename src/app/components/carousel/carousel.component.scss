@@ -36,3 +36,10 @@
     transform: translateX(-50%);
   }
 }
+
+// Don't pause animation on mobile
+@media (hover: none) {
+  .scroll-container:hover .scroller-wrapper {
+    animation-play-state: running;
+  }
+}
