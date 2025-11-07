@@ -1,4 +1,4 @@
-.scroll-container {
+// .scroll-container {
   // -webkit-mask-image: linear-gradient(
   //   to right,
   //   transparent 0,
@@ -14,9 +14,13 @@
   //   transparent 100%
   // );
 
-  &:hover .scroller-wrapper {
-    animation-play-state: paused;
-  }
+  // &:hover .scroller-wrapper img {
+  //   animation-play-state: paused;
+  // }
+// }
+
+.scroll-container:has(img:hover) .scroller-wrapper {
+  animation-play-state: paused;
 }
 
 .scroller-content {
@@ -25,9 +29,9 @@
 
 .scroller-wrapper {
   display: flex;
-  animation: infinite-scroll 25s linear infinite;
+  animation: infinite-scroll 20s linear 0.1s infinite;
   will-change: transform;
-  transform: translate3d(0,0,0);
+  transform: translate3d(0, 0, 0);
 }
 
 @keyframes infinite-scroll {
