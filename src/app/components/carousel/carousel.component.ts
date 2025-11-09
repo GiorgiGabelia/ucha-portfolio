@@ -1,6 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
-
-
+import { Component, signal } from '@angular/core';
 @Component({
   selector: 'app-carousel',
   imports: [],
@@ -8,21 +6,21 @@ import { Component, computed, signal } from '@angular/core';
   styleUrl: './carousel.component.scss',
 })
 export class CarouselComponent {
-  readonly images = Array.from({ length: 7 }, (_, i) => `assets/${i + 1}.webp`);
+  readonly imagePaths = Array.from({ length: 7 }, (_, i) => `assets/${i + 1}.webp`);
+  readonly images: HTMLImageElement[]  = [];
+  readonly imagesLoaded = signal(false);
 
-  hoveredImgIndexInSecondUl = signal<null | number>(null);
-
-  secondUlMargin = computed(() => {
-    const hoveredImgIndex = this.hoveredImgIndexInSecondUl();
-    const margin = hoveredImgIndex ? (hoveredImgIndex + 1) * 30 : 0;
-    return margin + 'px';
-  })
-
-  onMouseEnter(index: number) {
-    this.hoveredImgIndexInSecondUl.set(index);
+  ngOnInit() {
+    this.pload(this.imagePaths);
   }
 
-  onMouseLeave() {
-    this.hoveredImgIndexInSecondUl.set(null);
+  pload(args: string[]): void {
+    for (var i = 0; i < args.length; i++) {
+      this.images[i] = new Image();
+      this.images[i].src = args[i];
+      console.log('loaded: ' + args[i]);
+    }
+
+    this.imagesLoaded.set(true);
   }
 }
