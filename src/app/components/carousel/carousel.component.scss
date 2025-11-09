@@ -29,9 +29,16 @@
 
 .scroller-wrapper {
   display: flex;
-  animation: infinite-scroll 20s linear 0.1s infinite;
-  will-change: transform;
-  transform: translate3d(0, 0, 0);
+
+  &--ready {
+    animation: infinite-scroll 20s linear infinite;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+    contain: layout paint;
+    isolation: isolate;
+  }
 }
 
 @keyframes infinite-scroll {

@@ -1,17 +1,18 @@
-@if(imagesLoaded()) {
+
   <div class="w-full inline-flex flex-nowrap overflow-hidden scroll-container">
-    <div class="scroller-wrapper">
+    <div class="scroller-wrapper" [ngClass]="{'scroller-wrapper--ready': imagesLoaded()}">
       @for (i of [0,1,2,3]; track i) {
       <ul class="flex items-center justify-center md:justify-start [&_li]:mx-2 [&_img]:max-w-none scroller-content"
-        [attr.aria-hidden]="i > 0 ? 'true' : null">
-        @for (image of images; track image.src) {
+        [attr.aria-hidden]="i > 0 ? 'true' : null"
+       >
+        @for (path of imagePaths; track path) {
         <li>
-          <img [src]="image.src" class="h-[256px] hover:h-[385px] transition-all duration-500 ease-in-out" />
+          <img [src]="path" class="h-[256px] hover:h-[385px] transition-all duration-500 ease-in-out" />
         </li>
         }
       </ul>
       }
     </div>
   </div>
-}
+
 

@@ -1,25 +1,35 @@
+import { NgClass } from '@angular/common';
 import { Component, signal } from '@angular/core';
 @Component({
   selector: 'app-carousel',
-  imports: [],
+  imports: [NgClass],
   templateUrl: './carousel.component.html',
   styleUrl: './carousel.component.scss',
 })
 export class CarouselComponent {
   readonly imagePaths = Array.from({ length: 7 }, (_, i) => `assets/${i + 1}.webp`);
-  readonly images: HTMLImageElement[]  = [];
   readonly imagesLoaded = signal(false);
 
   ngOnInit() {
-    this.pload(this.imagePaths);
+    this.preloadImages()
   }
 
-  pload(args: string[]): void {
-    for (var i = 0; i < args.length; i++) {
-      this.images[i] = new Image();
-      this.images[i].src = args[i];
-      console.log('loaded: ' + args[i]);
-    }
+  async preloadImages(): Promise<void> {
+    const imagePromises = this.imagePaths.map(path => {
+      return new Promise<void>(resolve => {
+        const img = new Image();
+        img.src = path;
+
+        if (img.decode) {
+          img.decode().then(() => resolve()).catch(() => resolve());
+        } else {
+          img.onload = () => resolve();
+          img.onerror = () => resolve();
+        }
+      });
+    });
+
+    await Promise.all(imagePromises);
 
     this.imagesLoaded.set(true);
   }
