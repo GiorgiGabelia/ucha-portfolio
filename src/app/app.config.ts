@@ -5,29 +5,40 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { routes } from './app.routes';
 
 
+// function preloadImagesFactory() {
+//   return () => {
+//     const imageUrls = Array.from({ length: 7 }, (_, i) => `assets/${i + 1}.webp`)
+
+//     return new Promise<void>((resolve) => {
+//       let loadedCount = 0;
+//       const total = imageUrls.length;
+
+//       imageUrls.forEach((url) => {
+//         const img = new Image();
+//         img.src = url;
+
+//         img.onload = img.onerror = () => {
+//           loadedCount++;
+//           if (loadedCount === total) {
+//             console.log('✅ All images preloaded');
+//             resolve();
+//           }
+//         };
+//       });
+//     });
+//   };
+// }
+
 function preloadImagesFactory() {
-  return () => {
+  return async () => {
     const imageUrls = Array.from({ length: 7 }, (_, i) => `assets/${i + 1}.webp`)
 
-    return new Promise<void>((resolve) => {
-      let loadedCount = 0;
-      const total = imageUrls.length;
+    await Promise.all(imageUrls.map(url =>
+      fetch(url, { cache: 'force-cache' })
+    ));
 
-      imageUrls.forEach((url) => {
-        const img = new Image();
-        img.src = url;
-
-        img.onload = img.onerror = () => {
-          loadedCount++;
-          if (loadedCount === total) {
-            console.log('✅ All images preloaded');
-            resolve();
-          }
-        };
-      });
-    });
-  };
-}
+    console.log('✅ All images fetched and cached');
+  }}
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }),
