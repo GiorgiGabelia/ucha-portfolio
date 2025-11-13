@@ -7,7 +7,7 @@
        >
         @for (path of imagePaths; track path) {
         <li>
-          <img [src]="path" class="h-[256px] hover:h-[385px] transition-all duration-500 ease-in-out" />
+          <img [src]="path" class="h-[256px] max-[1024px]:h-[227px]" />
         </li>
         }
       </ul>

@@ -19,9 +19,9 @@
   // }
 // }
 
-.scroll-container:has(img:hover) .scroller-wrapper {
-  animation-play-state: paused;
-}
+// .scroll-container:has(img:hover) .scroller-wrapper {
+//   animation-play-state: paused;
+// }
 
 .scroller-content {
   flex: 0 0 auto;
@@ -31,7 +31,7 @@
   display: flex;
 
   &--ready {
-    animation: infinite-scroll 20s linear infinite;
+    animation: infinite-scroll 50s linear infinite;
     will-change: transform;
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
@@ -51,8 +51,8 @@
 }
 
 // Don't pause animation on mobile
-@media (hover: none) {
-  .scroll-container:hover .scroller-wrapper {
-    animation-play-state: running;
-  }
-}
+// @media (hover: none) {
+//   .scroll-container:hover .scroller-wrapper {
+//     animation-play-state: running;
+//   }
+// }
