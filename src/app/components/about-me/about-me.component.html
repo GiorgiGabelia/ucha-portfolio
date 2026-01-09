@@ -1,6 +1,5 @@
-<div class="text-3xl max-[1024px]:text-xl font-medium">
-  <span>A product designer helping teams <br class="min-[1024px]:hidden"> turn <br class="max-[1024px]:hidden"> ideas into
-    digital products. <br class="min-[1024px]:hidden"></span>
-  <span class="opacity-60"> I create <br class="max-[1024px]:hidden"> interfaces and experiences <br class="min-[1024px]:hidden"></span>
-  <span class="opacity-40"> that <br class="max-[1024px]:hidden"> drive growth and delight users.</span>
+<div class="text-3xl max-[1024px]:text-xl font-medium" #container>
+  @for(line of lines; track line.fullText) {
+      <span [class.opacity-60]="$index === 1" [class.opacity-40]="$index === 2" [innerHTML]="line.rendered"></span>
+  }
 </div>

@@ -9,3 +9,17 @@ body {
   font-family: "General Sans", sans-serif;
   background: #f3f3f3;
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  display: block;
+  animation: fadeIn 2000ms ease-out forwards;
+}

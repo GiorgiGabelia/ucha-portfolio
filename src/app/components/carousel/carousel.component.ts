@@ -7,7 +7,7 @@ import { Component, signal } from '@angular/core';
   styleUrl: './carousel.component.scss',
 })
 export class CarouselComponent {
-  readonly imagePaths = Array.from({ length: 7 }, (_, i) => `assets/${i + 1}.svg`);
+  readonly imagePaths = Array.from({ length: 11 }, (_, i) => `assets/carousel/${i + 1}.webp`);
   readonly imagesLoaded = signal(false);
 
   ngOnInit() {

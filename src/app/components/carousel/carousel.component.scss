@@ -31,7 +31,7 @@
   display: flex;
 
   &--ready {
-    animation: infinite-scroll 50s linear infinite;
+    animation: infinite-scroll 40s linear infinite;
     will-change: transform;
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
