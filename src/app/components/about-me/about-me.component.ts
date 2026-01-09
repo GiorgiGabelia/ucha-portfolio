@@ -1,9 +1,4 @@
-import {
-  Component,
-  AfterViewInit,
-  ViewChild,
-  ElementRef
-} from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef, signal } from '@angular/core';
 
 interface TypeLine {
   fullText: string;
@@ -17,6 +12,10 @@ interface TypeLine {
 export class AboutMeComponent implements AfterViewInit {
   @ViewChild('container', { static: true })
   container!: ElementRef<HTMLDivElement>;
+
+  @ViewChild('ghost', { static: true })
+  ghost!: ElementRef<HTMLDivElement>;
+
 
   lines: TypeLine[] = [
     {
@@ -40,14 +39,18 @@ export class AboutMeComponent implements AfterViewInit {
   pauseBetweenLines = 30;
 
   ngAfterViewInit(): void {
+    const ghostHeight = this.ghost?.nativeElement.offsetHeight;
+    console.log(ghostHeight)
+    this.container.nativeElement.style.height = ghostHeight + 'px';
+
     this.typeLine(0, 0);
+
+    window.addEventListener('resize', () => {
+      this.container.nativeElement.style.height = this.ghost.nativeElement.offsetHeight + 'px';
+    });
   }
 
-  private typeLine(
-    lineIndex: number,
-    tokenIndex: number,
-    charIndex: number = 0
-  ): void {
+  private typeLine(lineIndex: number, tokenIndex: number, charIndex: number = 0) {
     if (lineIndex >= this.lines.length) return;
 
     const line = this.lines[lineIndex];
@@ -89,9 +92,7 @@ export class AboutMeComponent implements AfterViewInit {
     }
   }
 
-
   private tokenize(input: string): string[] {
     return input.match(/(<[^>]+>|[^<]+)/g) ?? [];
   }
-
 }
